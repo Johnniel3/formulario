@@ -1,0 +1,275 @@
+*,
+*::after, 
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@property --color-uno {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #e7b5ae;
+    }
+
+@property --color-dos {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #997063;
+    }
+
+@property --color-tres {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #6e5e4f;
+    }
+
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    font-family: "Pixelify Sans", "Doto", "Jersey 20", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(/assets/espada.png), linear-gradient( var(--color-uno), var(--color-dos), var(--color-tres) , var(--color-uno)), radial-gradient(circle at top center, var(--color-tres), var(--color-dos), var(--color-uno) , var(--color-tres));
+    animation: movimiento 100s infinite alternate;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+
+    &::after {
+        content: "";
+        width: 600px;
+        height: 600px;
+        position: absolute;
+        bottom: -250px;
+        right: -250px;
+        z-index: 1;
+        border-radius: 50%;
+        border: 1px solid black;
+        background-image: radial-gradient(circle at top right, var(--color-dos), var(--color-tres));
+    }
+
+    &::before {
+        content: "";
+        width: 600px;
+        height: 600px;
+        position: absolute;
+        top: -250px;
+        left: -250px;
+        z-index: 1;
+        border-radius: 50%;
+        border: 1px solid black;
+        background-image: radial-gradient(circle at top right, var(--color-dos), var(--color-tres));
+    }
+}
+
+.formulario {
+    width: clamp(400px, 550px, 700px);
+    height: clamp(500px, 75vh, 900px);
+    display: flex;
+    gap: 2rem;
+    /* justify-content: space-evenly; */
+    align-items: center;
+    flex-direction: column;
+    padding: 0 3rem;
+    border: 1px solid black;
+    border-radius: 15px;
+    box-shadow: 0 6px 25px #000000cc;
+    background-image: linear-gradient(#f0f0f071, #51515e7e), url(/assets/formulario.png);
+    background-size: cover;
+    z-index: 2;
+    transform: translate(-150%);
+    animation: mostrar 1s forwards;
+
+    .titulo {
+        font-size: 2rem;
+        margin-top: 1rem;
+        font-family: "Pixelify Sans";
+        font-weight: 900;
+    }
+
+    .condiciones {
+        width: 100%;
+        border: 1px dotted red;
+        background-color: #c2dbdbc0;
+        font-family: "Doto";
+        padding: .5rem;
+        font-weight: bold;
+    }
+
+    .input {
+        width: 100%;
+
+        .label {
+            height: 2rem;
+            font-size: 1.3rem;
+        }
+
+        .campo {
+            width: 100%;
+            height: 2rem;
+            background-color: rgba(255, 255, 159, 0.397);
+            border: 2px inset rgba(0, 0, 0, 0.349);
+            padding-left: 1.5rem;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 5px;
+            /* animation: vibrar 0.5s 1s ease-in-out; */
+
+            &::placeholder {
+                color: rgba(0, 0, 0, 0.349);
+                font-size: 1rem;
+            }
+            
+            &:focus {
+                outline: none;
+                border: 2px solid rgba(73, 0, 83, 0.349);
+            }
+        }
+
+        .animado {
+            animation: vibrar 0.5s 1s ease-in-out;
+        }
+
+        .incorrecto {
+            color: red;
+            text-shadow: 0 0 10px red;
+        }
+    }
+
+    .animado {
+        animation: vibrar 0.5s .5s ease-in-out;
+    }
+
+
+
+
+    .boton {
+        padding: .7rem;
+        background-color: aqua;
+        border-radius: 5px;
+        font-family: "Jersey 20";
+        font-size: 1.2rem;
+        border-color: white;
+        color: black;
+        background-color: rgb(78, 248, 191);
+        transition: box-shadow .5s;
+        
+        &:hover {
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.452);
+        }
+    }
+
+    .otrosEnlaces {
+        display: flex;
+        gap: 1rem;
+        flex-direction: column;
+        align-items: center;
+
+        .metodos {
+            width: 100%;
+            text-align: center;
+            padding: .2rem;
+            font-weight: 900;
+        }
+
+        .botones {
+            display: flex;
+            gap: 1rem;
+            width: 100%;
+
+            .inicio {
+                padding: .5rem;
+                border-radius: 25px;
+                border: 1px solid black;
+                display: flex;
+                align-items: center;
+                font-family: "Jersey 20";
+                font-size: 1rem;
+                cursor: pointer;
+                transition: box-shadow .5s;
+                text-decoration: none;
+                color: black;
+                background-color: #c2dbdbc0;
+
+                &:hover {
+                    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.452);
+                }
+
+                img {
+                    height: 24px;
+                    padding: 0 5px;
+                }
+            }
+
+            .facebook {
+                background: rgb(45, 93, 223);
+                color: white;
+                border-color: rgba(148, 148, 148, 0.767);
+            }
+        }
+    }
+
+    .privacidad {
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.774);
+        width: 100%;
+        padding: .5rem;
+        font-family: "Jersey 20";
+
+        .texto {
+
+            .terminos {
+                color: rgb(77, 77, 212);
+            }
+        }
+    }
+
+    .existente {
+        background-color: transparent;
+        font-family: inherit;
+        font-size: large;
+        color: rgb(0, 0, 255);
+        text-shadow: 0 0px 15px white;
+        border: none;
+        text-decoration: underline;
+        cursor: pointer;
+
+    }
+}
+
+@keyframes mostrar {
+    to {
+        transform: translate(0);
+    }
+}
+
+
+@keyframes vibrar {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes movimiento {
+    25% {
+        --color-uno: #d1f0a1;
+        --color-dos: #92ff92;
+        --color-tres: #6d9673;
+    }
+
+    50% {
+        --color-uno: #a1f0d8;
+        --color-dos: #92fff6;
+        --color-tres: #6d968f;
+    }
+
+    75% {
+        --color-uno: #f0d7a1;
+        --color-dos: #ffef92;
+        --color-tres: #968c6d;
+    }
+}
