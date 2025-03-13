@@ -64,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function() {
         aviso = document.createElement("p");
         aviso.textContent = `${error.target.id} invalido`;
         aviso.classList.add("incorrecto");
+        padre.classList.add("animado")
         //agregar a HTML
         padre.appendChild(aviso)
     }
