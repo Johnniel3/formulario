@@ -36,6 +36,7 @@ body {
     animation: movimiento 100s infinite alternate;
     background-repeat: no-repeat;
     background-position: left bottom;
+    overflow: hidden;
 
     &::after {
         content: "";
@@ -129,6 +130,12 @@ body {
             }
         }
 
+        .valido {
+            border-color: green;
+            background-color: rgba(64, 175, 53, 0.596);
+            cursor: no-drop;
+        }
+
         .animado {
             animation: vibrar 0.5s 1s ease-in-out;
         }
@@ -138,6 +145,8 @@ body {
             text-shadow: 0 0 10px red;
         }
     }
+
+    
 
     .animado {
         animation: vibrar 0.5s .5s ease-in-out;

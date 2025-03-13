@@ -12,39 +12,59 @@ document.addEventListener("DOMContentLoaded", function() {
     // console.log(inputNombre)
     
     //Asignar eventos y funcion para validar
-    nombre.addEventListener("blur", validar);
-    correo.addEventListener("blur", validar);
+    nombre.addEventListener("blur", validarCampo);
+    correo.addEventListener("blur", validarCampo);
 
+    function validarCampo(event) {
+        if(event.target.id == "correo" && event.target.value){
+            validarEmail(event)
+        } else if (event.target.id == "nombre" && event.target.value ) {
+            validarName(event)
+        } else if( !event.target.value ) {
+            generarAlert(event)
+        } 
+    }
 
-    //funcion para validar los inputs Nombre y Correo
-    function validar(evento) {
-        //verifico si el campo esta vacio
-        evento.target.value === "" ? vacio(evento) : verificar(evento);
-    }
-    
-    function vacio(evento, referencia) {
-        //creo la referencia del target
-        referencia = evento.target.parentElement;
-        // comprobar si existe una alerta
-        const alerta = referencia.querySelector(".incorrecto");
-        if (alerta) {
-            verificar(evento, referencia)
-        }
-        //toma el target mediante la referencia
-        const error = document.createElement("p");
-        error.textContent = `El ${evento.target.id} es obligatorio.`
-        error.classList.add("incorrecto")
-        referencia.classList.toggle("animado");
-        //agrego el texto al target
-        referencia.appendChild(error)
-    }
-    
-    function verificar(evento, referencia) {
-        referencia = evento.target;
-        const alerta = referencia.document.querySelector(".incorrecto") 
-        if(alerta) {
-            alerta.remove()
+    function validarEmail(correo) {
+        const regex =  /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/
+        const valido = regex.test(correo.target.value);
+        if(valido && correo.target.nextElementSibling) {
+            correo.target.classList.add("valido")
+            correo.target.setAttribute('readonly', true);
+        } else if(valido) {
+            correo.target.classList.add("valido")
+            correo.target.setAttribute('readonly', true);
+        } else {
+            generarAlert(correo)
         }
     }
-    
+    function validarName(nombre) {
+        const regex = /^[a-zA-Z0-9áéíóúñÁÉÍÓÚÑ\s]{2,50}$/;
+        const valido = regex.test(nombre.target.value);
+        if(valido && !nombre.target.nextElementSibling) {
+            nombre.target.classList.add("valido")
+            nombre.target.setAttribute('readonly', true);
+        } else if(valido) {
+            nombre.target.classList.add("valido")
+            nombre.target.setAttribute('readonly', true);
+        } else {
+            generarAlert(nombre)
+        }
+    }
+
+    function generarAlert(error) {
+        let existe = error.target.nextElementSibling;
+
+        if(existe) {
+            return ""
+        }
+
+        referencia = error.target
+        const padre = error.target.parentElement
+        aviso = document.createElement("p");
+        aviso.textContent = `${error.target.id} invalido`;
+        aviso.classList.add("incorrecto");
+        //agregar a HTML
+        padre.appendChild(aviso)
+    }
 })
